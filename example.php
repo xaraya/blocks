@@ -10,7 +10,7 @@ class ExampleBlock extends BasicBlock implements iBlock
     protected $contact = 'crisp@xaraya.com';
     
     protected $show_preview = true;
-    protected $show_help = true;
+    protected $show_help = false;
     
     public function display(Array $data=array())
     {
