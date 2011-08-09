@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
+    <div class="xar-row">
+        <div class="xar-col">
+            <label for="timer_time">Timer Target</label>
+        </div>
+        <div class="xar-col">
+            <xar:data-input type="calendar" name="timer_time" id="timer_time" value="$timer_time"/>
+        </div>
+    </div>
+</xar:template>

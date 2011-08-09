@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
+    <xar:javascript scope="block" position="head" type="src" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"/>
+    <xar:javascript scope="block" block="timer" position="head" src="countdown/jquery.countdown.js"/>
+    <xar:style scope="block" block="timer" file="countdown/jquery.countdown"/>
+    <xar:set name="timer_id">'timer-'.$_bl_block_group_id.'-'.$_bl_block_type_id.'-'.$_bl_block_id</xar:set>
+    <xar:set name="code">"//<![CDATA[
+    var timer_time = new Date('$timer_locale_time');
+//]]>"</xar:set>
+    <xar:if condition="$timer_direction == 'until'">
+    <xar:set name="code">$code."//<![CDATA[
+    jQuery('##$timer_id').countdown({until: timer_time});
+//]]>"</xar:set>
+    <xar:else/>
+    <xar:set name="code">$code."//<![CDATA[
+    jQuery('##$timer_id').countdown({since: timer_time});
+//]]>"</xar:set>
+    </xar:if>
+
+    <xar:set name="timercode">"//<![CDATA[
+jQuery(function () {
+    $code
+});
+//]]>"</xar:set>
+    <xar:javascript scope="block" position="head" type="code" code="$timercode"/>
+    <div id="#$timer_id#">
+        #$timer_locale_time#
+    </div>
+</xar:template>
