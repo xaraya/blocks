@@ -19,10 +19,9 @@ class TimerBlock extends BasicBlock implements iBlock
     public function display(Array $data=array())
     {
         $data = $this->getContent();
-        if (!empty($this->timer_time))
-            $timer_unix_time = strtotime($this->timer_time);
-        if (!empty($timer_unix_time)) {
-            $now = time();
+        $now = time();
+        $timer_unix_time = !empty($this->timer_time) ? strtotime($this->timer_time) : $now;
+        if (!empty($timer_unix_time)) {            
             if ($timer_unix_time > $now) {
                 $data['timer_direction'] = 'until';
             } else {
