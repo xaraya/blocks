@@ -72,7 +72,7 @@ class ExampleBlock extends BasicBlock implements iBlock
  * @throws none
 **/
     /*
-    public function upgrade()
+    public function upgrade($oldversion)
     {
         switch ($oldversion) {
             case '0.0.1':

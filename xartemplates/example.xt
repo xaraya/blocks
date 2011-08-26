@@ -5,5 +5,5 @@
         $block_id, $block_name, $block_group, $block_group_id, $block_type, $block_type_id
     -->
     <!-- render the block content (using xar:var saves us calling xarVarPrepForDisplay()) -->
-    <xar:var name="example_text"/>huh?
+    <xar:var name="example_text"/>
 </xar:template>
