@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
+
+    <!-- Display list of stored redirects -->
+    <xar:if condition="!empty($redirects)">
+        <table class="xar-fullwidth xar-margin-thicktop">
+            <caption class="xar-align-left">Redirects</caption>
+            <thead>
+                <tr>
+                    <th>Source URL</th>
+                    <th>Target URL</th>
+                    <th>Delete</th>
+                </tr>        
+            </thead>
+            <tbody>
+                <xar:foreach in="$redirects" key="$key" value="$redirecttag">
+                    <xar:set name="redirectname">"redirects[{$key}]"</xar:set>
+                    <xar:set name="redirectid">"redirects_{$key}"</xar:set>
+                    <tr>
+                        <td>
+                            <xar:set name="sourcename">"{$redirectname}[source]"</xar:set>
+                            <xar:set name="sourceid">"{$redirectid}_source"</xar:set>
+                            <input type="text" name="#$sourcename#" id="#$sourceid#" value="#$redirecttag.source#" style="width: 40em"/>
+                        </td>
+                        <td>
+                            <xar:set name="targetname">"{$redirectname}[target]"</xar:set>
+                            <xar:set name="targetid">"{$redirectid}_target"</xar:set>
+                            <input type="text" name="#$targetname#" id="#$targetid#" value="#$redirecttag.target#" style="width: 40em"/>
+                        </td>
+                        <td>
+                            <xar:set name="delname">"{$redirectname}[delete]"</xar:set>
+                            <xar:set name="delid">"{$redirectid}_delete"</xar:set>
+                            <input type="checkbox" name="#$delname#" id="#$delid#"/>                
+                        </td>
+                    </tr>
+                </xar:foreach>
+            </tbody>
+        </table>    
+    </xar:if>
+    
+    <!-- New redirect input -->
+    <table class="xar-fullwidth xar-margin-nonetop">
+        <caption class="xar-align-left">New Redirect</caption>
+        <thead>
+            <tr>
+                <th>Source URL</th>
+                <th>Redirect URL</th>
+            </tr>        
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" name="redirectsource" id="redirectsource" value="" style="width: 40em"/>
+                </td>
+                <td>
+                    <input type="text" name="redirecttarget" id="redirecttarget" value="" style="width: 40em"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</xar:template>
