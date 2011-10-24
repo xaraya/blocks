@@ -16,7 +16,7 @@ class PubsliderBlock extends BasicBlock implements iBlock
 {
     protected $type = 'pubslider';
     protected $text_type = 'Publication Slider';
-    protected $text_type_long = 'SoloBlocks Example Block';
+    protected $text_type_long = 'Simple Content Slider for Publications module';
     protected $xarversion = '1.0.0';
     protected $author = 'Marc Lutolf';
     protected $contact = 'mfl@netspan.ch';
