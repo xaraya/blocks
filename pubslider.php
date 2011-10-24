@@ -45,12 +45,17 @@ class PubsliderBlock extends BasicBlock implements iBlock
     public $pubstate            = '2,3';
     public $toptype             = 'ratings'; 
 
-    public $items               = array(); 
-
     public function init()
     {
+        // Bail if the publications module is not loaded
+        if (!xarModIsAvailable('publications')) return true;
+        
         sys::import('modules.dynamicdata.class.objects.master');
-        $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));
+        try {
+            $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));
+        } catch (Exception $e) {
+            $publications = null;
+        }
         if (empty($publications)) {
             $module = 'publications';
             $objects = array(
@@ -59,7 +64,6 @@ class PubsliderBlock extends BasicBlock implements iBlock
             if(!xarModAPIFunc('modules','admin','standardinstall',array('module' => $module, 'objects' => $objects))) 
                 throw new Exception(xarML('The publications_publications object cannot be loaded'));            
         }
-        $this->readmore = xarML('Read more...');
     }
 }
 ?>
