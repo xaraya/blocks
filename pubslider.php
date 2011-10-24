@@ -49,6 +49,7 @@ class PubsliderBlock extends BasicBlock implements iBlock
 
     public function init()
     {
+        sys::import('modules.dynamicdata.class.objects.master');
         $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));
         if (empty($publications)) {
             $module = 'publications';
