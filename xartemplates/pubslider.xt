@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <xar:style scope="block" block="pubslider" file="flexslider" method="import" position="head"/>
+    <xar:javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" position="head"/>
+    <xar:javascript scope="block" block="pubslider" filename="FlexSlider-1.7/jquery.flexslider-min.js" position="head"/>
+    
+    <script type="text/javascript" charset="utf-8">
+      $(window).load(function() {
+        $('.flexslider').flexslider();
+      });
+    </script>
+
+    <xar:if condition="!empty($publications)">
+        <xar:set name="items">$publications->items</xar:set>
+        <div class="flexslider">
+          <ul class="slides">
+            <xar:foreach in="$items" key="$key" value="$item">
+                <li>
+                    <xar:template scope="block" block="pubslider" file="slide" subdata="array('item' => $item)"/>
+                </li>
+            </xar:foreach>
+          </ul>
+        </div>
+    </xar:if>
+</xar:template>

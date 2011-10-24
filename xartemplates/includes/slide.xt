@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <xar:if condition="$item['itemtype'] eq 1">
+        <xar:if condition="!empty($item['link'])">
+           <h4><a href="#$item['link']#">#xarVarPrepForDisplay($item['title'])#</a></h4>
+        <xar:else />
+            <h4>#xarVarPrepForDisplay($item['title'])#</h4>
+        </xar:if>
+        
+        <xar:if condition="!empty($item['description'])">
+            <div>
+                #$item['description']#
+            </div>
+        </xar:if>
+    <xar:elseif condition="$item['itemtype'] eq 2"/>
+        <xar:if condition="!empty($item['link'])">
+           <h4><a href="#$item['link']#">#xarVarPrepForDisplay($item['title'])#</a></h4>
+        <xar:else />
+            <h4>#xarVarPrepForDisplay($item['title'])#</h4>
+        </xar:if>
+
+        <xar:if condition="!empty($item['body_1'])">
+            <div>
+                #$item['body_1']#
+            </div>
+        </xar:if>
+    <xar:elseif condition="$item['itemtype'] eq 7"/>
+        <div style="text-align: center">
+            "#xarVarPrepForDisplay($item['summary'])#"
+        </div>
+
+        <xar:if condition="!empty($item['description'])">
+            <div style="text-align: center; right: 40px">
+                #$item['description']#
+            </div>
+        </xar:if>
+    <xar:else/>
+    </xar:if>
+</xar:template>
