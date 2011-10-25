@@ -26,9 +26,10 @@ class PubsliderBlockDisplay extends PubsliderBlock implements iBlock
 
         // Setup featured item
         if (count($featuredids) > 0) {        
-            $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));            
-            $itemids = $publications->getItems(array('itemids' => $featuredids));
-            if (empty($itemids)) return '';
+            $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));  
+            $publications->dataquery->in('id',$featuredids);
+            $items = $publications->getItems();
+            if (empty($items)) return '';
             $data['publications'] = $publications;
         }
         return $data;

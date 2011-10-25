@@ -74,6 +74,8 @@
         <xar:set name="firstline">array('id' => 0, 'name' => $firstline)</xar:set>
         <xar:data-input type="multiselect" size="10" name="featuredids" firstline="$firstline" options="$filtereditems" value="$featuredids"/>
     </div>
+    <!--
+    
     <div class="xar-form-input-wrapper">
         <label for="alttitle#$blockid#" class="help xar-form-label" title="#xarML('If you wish to give the article an alternative title to be displayed as a featured item, enter the name here.')#">
             Alternate Title        
@@ -114,6 +116,7 @@
             </xar:foreach>
         </select>
     </div>
+    -->
     <div class="xar-form-input-wrapper">
         <label class="xar-form-label help" title="#xarML('Choose the sorting options for the top items.')#" for="toptype#$blockid#"> 
             Sort by 
