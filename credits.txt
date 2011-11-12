@@ -1,0 +1,7 @@
+The FileManager Block is based on the excellent filemanager web application by 
+CoreFive Labs
+You can find them and their stuff here:
+http://labs.corefive.com/
+
+The port to Xaraya:
+    Marc Lutolf <mfl@netspan.ch>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+<!-- Test to see if all is OK
+    <xar:set name="redirect">xarServer::getBaseURL().sys::code() . "blocks/filemanager/index.html"</xar:set>
+    #xarController::redirect($redirect)#
+-->    
+    <title>File Manager</title>
+    <xar:set name="blockdir">sys::code() . "blocks/filemanager/"</xar:set>
+    <iframe src="#$blockdir#index.html" width="#$width#" height="#$height#" style="border: none">
+      <p>Your browser does not support iframes.</p>
+    </iframe> 
+</xar:template>

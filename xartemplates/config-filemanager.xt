@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <div class="xar-form-input-wrapper">
+        <label class="xar-form-label help" title="#xarML('The width of the file manager window in % or px')#" for="width#$blockid#"> 
+            Width
+        </label> 
+        <xar:data-input type="textbox" name="width" value="$width"/>
+    </div>
+    <div class="xar-form-input-wrapper">
+        <label class="xar-form-label help" title="#xarML('The height of the file manager window in % or px')#" for="height#$blockid#"> 
+            Height
+        </label> 
+        <xar:data-input type="textbox" name="height" value="$height"/>
+    </div>
+    <div class="xar-form-input-wrapper">
+        <label class="xar-form-label help" title="#xarML('The height of the file manager window in % or px')#" for="configuration#$blockid#"> 
+            Configuration
+        </label> 
+        <xar:data-input type="codemirror" name="configuration" value="$configuration"/>
+    </div>
+</xar:template>
