@@ -16,6 +16,6 @@
         <label class="xar-form-label help" title="#xarML('The height of the file manager window in % or px')#" for="configuration#$blockid#"> 
             Configuration
         </label> 
-        <xar:data-input type="codemirror" name="configuration" value="$configuration"/>
+        <xar:data-input type="textarea" name="configuration" value="$configuration"/>
     </div>
 </xar:template>

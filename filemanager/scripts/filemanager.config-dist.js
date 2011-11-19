@@ -21,7 +21,7 @@ var browseOnly = false;
 // Set this to the server side language you wish to use.
 var lang = 'php'; // options: php, jsp, lasso, asp, cfm // we are looking for contributors for lasso, python connectors (partially developed)
 
-var blockpath = 'code/blocks/filemanager';
+var blockpath = 'code/blocks/filemanager/filemanager';
 var am = document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') - blockpath.length);
 
 // Set this to the directory you wish to manage.
