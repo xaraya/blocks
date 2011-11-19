@@ -21,11 +21,11 @@ var browseOnly = false;
 // Set this to the server side language you wish to use.
 var lang = 'php'; // options: php, jsp, lasso, asp, cfm // we are looking for contributors for lasso, python connectors (partially developed)
 
-var blockpath = 'code/blocks/filemanager';
-var am = document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') - blockpath.length);
+var blockpath = 'code/blocks/filemanager/filemanager';
+var am = document.location.pathname.substring(1, document.location.pathname.lastIndexOf('/') - length.(blockpath));
 
 // Set this to the directory you wish to manage.
-var fileRoot = '/' + am + 'var/uploads/';
+var fileRoot = '/' + am + 'var/uploads/';alert(am);
 
 //Path to the manage directory on the HTTP server
 var relPath = window.location.protocol + '//' + document.domain;

@@ -18,7 +18,7 @@ class FileManagerBlockConfig extends FileManagerBlock implements iBlock
     public function configmodify()
     {
         $data = $this->getContent();  
-        $file = sys::code() . "blocks/filemanager/scripts/filemanager.config.js";
+        $file = sys::code() . "blocks/filemanager/filemanager/scripts/filemanager.config.js";
         $data['configuration'] = trim($this->read_file($file));
         return $data;
     }
@@ -28,7 +28,7 @@ class FileManagerBlockConfig extends FileManagerBlock implements iBlock
         xarVarFetch('width',         'str',       $args['width'],      $this->width, XARVAR_NOT_REQUIRED);
         xarVarFetch('height',        'str',       $args['height'],     $this->height, XARVAR_NOT_REQUIRED);
         xarVarFetch('configuration', 'str',       $configuration,      '', XARVAR_NOT_REQUIRED);
-        $file = sys::code() . "blocks/filemanager/scripts/filemanager.config.js";
+        $file = sys::code() . "blocks/filemanager/filemanager/scripts/filemanager.config.js";
         $this->write_file($file, $configuration);
         $this->setContent($args);
         return true;        
