@@ -2,6 +2,16 @@
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
     <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
 
+    <xar:set name="langobject">
+        sys::import('modules.dynamicdata.class.objects.master');
+        DataObjectMaster::getObject(array('name' => 'languages'));
+    </xar:set>
+    <xar:if condition="!empty($langobject)">
+        <xar:set name="usedropdown">1</xar:set>
+    <xar:else/>
+        <xar:set name="usedropdown">0</xar:set>
+    </xar:if>
+    
     <!-- Display list of stored redirects -->
     <xar:if condition="!empty($redirects)">
         <table class="xar-fullwidth xar-margin-thicktop">
@@ -10,6 +20,7 @@
                 <tr>
                     <th>Source URL</th>
                     <th>Target URL</th>
+                    <th>Language</th>
                     <th>Delete</th>
                 </tr>        
             </thead>
@@ -21,12 +32,23 @@
                         <td>
                             <xar:set name="sourcename">"{$redirectname}[source]"</xar:set>
                             <xar:set name="sourceid">"{$redirectid}_source"</xar:set>
-                            <input type="text" name="#$sourcename#" id="#$sourceid#" value="#$redirecttag.source#" style="width: 40em"/>
+                            <input type="text" name="#$sourcename#" id="#$sourceid#" value="#$redirecttag.source#" style="width: 25em"/>
                         </td>
                         <td>
                             <xar:set name="targetname">"{$redirectname}[target]"</xar:set>
                             <xar:set name="targetid">"{$redirectid}_target"</xar:set>
-                            <input type="text" name="#$targetname#" id="#$targetid#" value="#$redirecttag.target#" style="width: 40em"/>
+                            <input type="text" name="#$targetname#" id="#$targetid#" value="#$redirecttag.target#" style="width: 50em"/>
+                        </td>
+                        <td>
+                            <xar:set name="langname">"{$redirectname}[lang]"</xar:set>
+                            <xar:set name="langid">"{$redirectid}_lang"</xar:set>
+                            <xar:if condition="!empty($langobject)">
+                                <xar:var name="firstline">any</xar:var>
+                                <xar:set name="firstline">array('id'=>'','name'=>$firstline)</xar:set>
+                                <xar:data-input type="objectref" name="$langname" id="$langid" value="$redirecttag['lang']" refobject="languages" store_prop="locale" display_prop="name" firstline="$firstline"/>
+                            <xar:else/>
+                                <input type="text" name="#$langname#" id="#$langid#" value="#$redirecttag.lang#" style="width: 5em"/>
+                            </xar:if>
                         </td>
                         <td>
                             <xar:set name="delname">"{$redirectname}[delete]"</xar:set>
@@ -46,15 +68,25 @@
             <tr>
                 <th>Source URL</th>
                 <th>Redirect URL</th>
+                <th>Language</th>
             </tr>        
         </thead>
         <tbody>
             <tr>
                 <td>
-                    <input type="text" name="redirectsource" id="redirectsource" value="" style="width: 40em"/>
+                    <input type="text" name="redirectsource" id="redirectsource" value="" style="width: 25em"/>
                 </td>
                 <td>
-                    <input type="text" name="redirecttarget" id="redirecttarget" value="" style="width: 40em"/>
+                    <input type="text" name="redirecttarget" id="redirecttarget" value="" style="width: 50em"/>
+                </td>
+                <td>
+                    <xar:if condition="!empty($langobject)">
+                        <xar:var name="firstline">any</xar:var>
+                        <xar:set name="firstline">array('id'=>'','name'=>$firstline)</xar:set>
+                        <xar:data-input type="objectref" name="redirectlang" refobject="languages" store_prop="locale" display_prop="name" firstline="$firstline"/>
+                    <xar:else/>
+                        <input type="text" name="redirectlang" id="redirectlang" value="" style="width: 5em"/>
+                    </xar:if>
                 </td>
             </tr>
         </tbody>

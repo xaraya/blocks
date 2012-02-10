@@ -28,7 +28,7 @@ class ServeraliasBlockConfig extends ServeraliasBlock
  * Updates the Block config from the Blocks Admin
  * @param $data array containing title,content
  */
-    public function configupdate(Array $data=array())
+    public function update(Array $data=array())
     {
         $vars = array();
         
@@ -46,12 +46,14 @@ class ServeraliasBlockConfig extends ServeraliasBlock
         // only fetch other params if source isn't empty
         if (!empty($redirectsource)) {
             if (!xarVarFetch('redirecttarget', 'pre:trim:str:1:', $redirecttarget, '', XARVAR_NOT_REQUIRED)) return;
+            if (!xarVarFetch('redirectlang', 'pre:trim:str:1:', $redirectlang, '', XARVAR_NOT_REQUIRED)) return;
             $newredirects[] = array(
                 'source' => $redirectsource,
                 'target' => $redirecttarget,
+                'lang' => $redirectlang,
             );
         }
-        $vars['redirects'] = $newredirects;var_dump($vars['redirects']);//exit;
+        $vars['redirects'] = $newredirects;
         $this->setContent($vars);
         return true;
     }
