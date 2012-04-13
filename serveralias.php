@@ -43,7 +43,7 @@ class ServerAliasBlock extends BasicBlock
         $found_redirect = false;
         $found_referer = false;
         foreach ($this->redirects as $redirect) {
-            if (strstr($current_url,$redirect['source'])) {
+            if (strstr(xarServer::getBaseURL(),$redirect['source'])) {
                 $data['target'] = $redirect['target'];
                 $found_redirect = true;
             }
