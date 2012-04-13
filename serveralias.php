@@ -6,7 +6,7 @@
  * @subpackage serveralias block
  * @category Third Party Xaraya Block
  * @version 1.0.0
- * @copyright (C) 2011 Netspan AG
+ * @copyright (C) 2012 Netspan AG
  * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
  * @author Marc Lutolf <mfl@netspan.ch>
  */
@@ -26,12 +26,23 @@ class ServerAliasBlock extends BasicBlock
     public $redirects              = false;
     
 /**
- * Display func.
+ * Display function
  * @param $data array containing title,content
  */
     function display(Array $data=array())
     {
         $data = $this->getContent();
+        $current_url = parse_url(xarServer::getBaseURL());
+        $current_host = $current_url['host'];
+        $past_url = parse_url($_SERVER['HTTP_REFERER']);
+        $past_host = $past_url['host'];
+        $data['same_host'] = $current_host == $past_host;
+        $data['target'] = '';
+        foreach ($this->redirects as $redirect) {
+            if (strstr($current_url,$redirect['source'])) {
+                $data['target'] = $redirect['target'];
+            }
+        }
         return $data;
     }
 }

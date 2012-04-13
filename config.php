@@ -6,7 +6,7 @@
  * @subpackage serveralias block
  * @category Third Party Xaraya Block
  * @version 1.0.0
- * @copyright (C) 2011 Netspan AG
+ * @copyright (C) 2012 Netspan AG
  * @license GPL {@link http://www.gnu.org/licenses/gpl.html}
  * @author Marc Lutolf <mfl@netspan.ch>
  */

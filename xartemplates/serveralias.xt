@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
-    <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->    
-    <xar:if condition="!empty($redirects)">
-        <xar:set name="currenturl">xarServer::getCurrentURL()</xar:set>
-        <xar:foreach in="$redirects" value="$redirect">
-            <xar:if condition="strstr($currenturl,$redirect['source'])">
-                #xarController::redirect($redirect['target'],301)#
-            </xar:if>
-        </xar:foreach>
+    <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
+    <xar:if condition="!empty($target)">
+        <!-- Jump to a new page -->
+        #xarController::redirect($target,301)#
+    </xar:if>
+    <xar:if condition="!$same_host">
+        <!-- Insert here any routines that need to be run after we have redirected -->
     </xar:if>
 </xar:template>
