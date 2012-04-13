@@ -37,11 +37,21 @@ class ServerAliasBlock extends BasicBlock
         $past_url = parse_url($_SERVER['HTTP_REFERER']);
         $past_host = $past_url['host'];
         $data['same_host'] = $current_host == $past_host;
-        $data['target'] = '';
+        
+        $data['target'] = '';        
+        $data['referer'] = array();        
+        $found_redirect = false;
+        $found_referer = false;
         foreach ($this->redirects as $redirect) {
             if (strstr($current_url,$redirect['source'])) {
                 $data['target'] = $redirect['target'];
+                $found_redirect = true;
             }
+            if (strstr($_SERVER['HTTP_REFERER'],$redirect['source'])) {
+                $data['referer'] = $redirect;
+                $found_referer = true;
+            }
+            if ($found_redirect && $found_referer) break;
         }
         return $data;
     }

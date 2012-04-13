@@ -7,5 +7,6 @@
     </xar:if>
     <xar:if condition="!$same_host">
         <!-- Insert here any routines that need to be run after we have redirected -->
+        <!-- The var $referer contains the redirect information -->
     </xar:if>
 </xar:template>
