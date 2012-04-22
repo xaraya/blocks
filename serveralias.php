@@ -24,35 +24,46 @@ class ServerAliasBlock extends BasicBlock
     protected $pageshared          = false;
     
     public $redirects              = false;
-    
+    public $send_info              = true;
+
 /**
  * Display function
  * @param $data array containing title,content
  */
     function display(Array $data=array())
     {
-        $data = $this->getContent();
-        $current_url = parse_url(xarServer::getBaseURL());
-        $current_host = $current_url['host'];
-        $past_url = parse_url($_SERVER['HTTP_REFERER']);
-        $past_host = $past_url['host'];
-        $data['same_host'] = $current_host == $past_host;
-        
-        $data['target'] = '';        
-        $data['referer'] = array();        
-        $found_redirect = false;
-        $found_referer = false;
+        // Set up the redirect
         foreach ($this->redirects as $redirect) {
-            if (strstr(xarServer::getBaseURL(),$redirect['source'])) {
-                $data['target'] = $redirect['target'];
-                $found_redirect = true;
+            $source = trim($redirect['source']);
+            $target = trim($redirect['target']);
+            if (strpos(xarServer::getCurrentURL(),$source) === 0) {
+                // Poor man's sanity check
+                if ((strpos($target,$source) === 0) || (strpos($source,$target) === 0) ) break;
+                $data['source'] = $source;
+                $data['language'] = $redirect['lang'];
+                
+                // If send_info flag is sent, send the redirect information along with the redirect reauest
+                if ($this->send_info) {
+                    $info = array('redirect_s' => $source, 'redirect_l' => $redirect['lang']);
+                    $data['target'] = preg_replace("%".$source."%",$target,xarServer::getCurrentURL($info),1);
+                } else {
+                    $data['target'] = str_replace($source,$target,xarServer::getCurrentURL());
+                }
+                break;
             }
-            if (strstr($_SERVER['HTTP_REFERER'],$redirect['source'])) {
-                $data['referer'] = $redirect;
-                $found_referer = true;
-            }
-            if ($found_redirect && $found_referer) break;
         }
+
+        // If we already redirected and sent the redirect info, then grab it here
+        if(!xarVarFetch('redirect_s',  'str',   $redirect_s,     '',       XARVAR_NOT_REQUIRED)) {return;}
+        if(!xarVarFetch('redirect_l',  'str',   $redirect_l,     '',       XARVAR_NOT_REQUIRED)) {return;}
+        if (!empty($redirect_s)) {
+            try {
+                $data['source'] = $redirect_s;
+                $data['language'] = $redirect_l;
+                $data['postredirect'] = 1;
+            } catch (Exception $e) {}
+        }
+
         return $data;
     }
 }
