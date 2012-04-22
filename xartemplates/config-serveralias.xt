@@ -19,7 +19,7 @@
             </label>
         </div>
         <div class="xar-col">
-            <xar:data-input type="checkbox" name="send_redirect" value="$send_redirect"/>&#160
+            <xar:data-input type="checkbox" name="send_redirect" value="$send_redirect"/>&#160;
             Use this to pass source and language information to the redirected page
         </div>
     </div>
