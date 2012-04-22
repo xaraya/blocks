@@ -32,7 +32,11 @@ class ServeraliasBlockConfig extends ServeraliasBlock
     {
         $vars = array();
         
-        // fetch the array of redirects from input
+        // Fetch the value of the send_info checkbox
+        if (!xarVarFetch('send_info', 'int', $send_info, 0, XARVAR_NOT_REQUIRED)) return;
+        $vars['send_info'] = $send_info;
+
+        // Fetch the array of redirects from input
         if (!xarVarFetch('redirects', 'array', $redirects, array(), XARVAR_NOT_REQUIRED)) return;
         $newredirects = array();
         foreach ($redirects as $redirect) {
@@ -41,9 +45,9 @@ class ServeraliasBlockConfig extends ServeraliasBlock
             $newredirects[] = $redirect;
         }
 
-        // fetch the value of the new redirect
+        // Fetch the value of the new redirect
         if (!xarVarFetch('redirectsource', 'pre:trim:str:1:', $redirectsource, '', XARVAR_NOT_REQUIRED)) return;
-        // only fetch other params if source isn't empty
+        // Only fetch other params if source isn't empty
         if (!empty($redirectsource)) {
             if (!xarVarFetch('redirecttarget', 'pre:trim:str:1:', $redirecttarget, '', XARVAR_NOT_REQUIRED)) return;
             if (!xarVarFetch('redirectlang', 'pre:trim:str:1:', $redirectlang, '', XARVAR_NOT_REQUIRED)) return;

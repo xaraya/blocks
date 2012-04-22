@@ -12,6 +12,17 @@
         <xar:set name="usedropdown">0</xar:set>
     </xar:if>
     
+    <div class="xar-row">
+        <div class="xar-col">
+            <label for="display_period" title="#xarML('Send the redirection informaiton to the redirected page')#" class="xar-form-label">            
+                Send redirect information:            
+            </label>
+        </div>
+        <div class="xar-col">
+            <xar:data-input type="checkbox" name="send_redirect" value="$send_redirect"/>&#160
+            Use this to pass source and language information to the redirected page
+        </div>
+    </div>
     <!-- Display list of stored redirects -->
     <xar:if condition="!empty($redirects)">
         <table class="xar-fullwidth xar-margin-thicktop">

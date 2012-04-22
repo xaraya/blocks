@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
     <!-- License: GPL http://www.gnu.org/copyleft/gpl.html -->
+    <!--
+        Available: 
+            $source: the source domain in the block's table
+            $target: the target URL based on the target domain in the table and the URL encountered
+            $language: the language in the block's table
+    -->
     <xar:if condition="!empty($target)">
         <!-- Jump to a new page -->
         #xarController::redirect($target,301)#
     </xar:if>
-    <xar:if condition="!$same_host">
+    
+    <xar:if condition="isset($postredirect)">
         <!-- Insert here any routines that need to be run after we have redirected -->
-        <!-- The var $referer contains the redirect information -->
+        <!--
+            Available: 
+                $source: the source domain in the block's table
+                $language: the language in the block's table
+        -->
     </xar:if>
 </xar:template>
