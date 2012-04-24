@@ -34,9 +34,15 @@ class ServerAliasBlock extends BasicBlock
     {
         // Set up the redirect
         foreach ($this->redirects as $redirect) {
+            // We allow the wildcard "*" for the source
             $source = trim($redirect['source']);
+            $source = str_replace('/','\/',$source);
+            $source = str_replace('?','\?',$source);
+            $source = str_replace('.','\.',$source);
+            $regexsource = "$".str_replace('*','.*',$source)."$";
             $target = trim($redirect['target']);
-            if (strpos(xarServer::getCurrentURL(),$source) === 0) {
+            if (preg_match($regexsource, xarServer::getCurrentURL(),$matches)) {
+                $source = $matches[0];
                 // Poor man's sanity check
                 if ((strpos($target,$source) === 0) || (strpos($source,$target) === 0) ) break;
                 $data['source'] = $source;
