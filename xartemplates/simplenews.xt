@@ -9,7 +9,7 @@
         <xar:set name="items">$publications->items</xar:set>
         <div>
           <ul id="js-news" class="js-hidden">
-              <xar:if condition"!empty($items)">
+              <xar:if condition="!empty($items)">
                 <xar:foreach in="$items" key="$key" value="$item">
                     <li class="news-item">
                         <xar:template scope="block" block="simplenews" file="newsitem" subdata="array('item' => $item)"/>
