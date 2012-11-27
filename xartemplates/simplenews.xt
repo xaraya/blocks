@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
-    <xar:style scope="block" block="simplenews" file="ticker-style" method="import" position="head"/>
+    <xar:style scope="block" block="simplenews" file="ticker-style" method="link" position="head"/>
     <xar:javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" position="head"/>
     <xar:javascript scope="block" block="simplenews" filename="jquery.ticker.js" position="head"/>
     <xar:javascript scope="block" block="simplenews" filename="site.js" position="head"/>
