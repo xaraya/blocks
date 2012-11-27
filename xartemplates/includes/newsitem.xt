@@ -2,7 +2,7 @@
 <xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
     <xar:if condition="$item['itemtype'] eq 1">
         <!-- Title -->
-        <a href="#xarModURL('publications','user','display',array('id'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
+        <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
     <xar:else/>
         No news available
     </xar:if>
