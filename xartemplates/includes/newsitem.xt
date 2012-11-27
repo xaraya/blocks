@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <xar:if condition="$item['itemtype'] eq 2">
+
+        <!-- Title -->
+        <a href="#xarModURL('publications','user','display',array('id'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
+    <xar:else/>
+        No news available
+    </xar:if>
+</xar:template>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <xar:style scope="block" block="simplenews" file="ticker-style" method="import" position="head"/>
+    <xar:javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" position="head"/>
+    <xar:javascript scope="block" block="simplenews" filename="jquery.ticker.js" position="head"/>
+    <xar:javascript scope="block" block="simplenews" filename="site.js" position="head"/>
+    
+    <xar:if condition="!empty($publications)">
+        <xar:set name="items">$publications->items</xar:set>
+        <div>
+          <ul id="js-news" class="js-hidden">
+            <xar:foreach in="$items" key="$key" value="$item">
+                <li class="news-item">
+                    <xar:template scope="block" block="simplenews" file="newsitem" subdata="array('item' => $item)"/>
+                </li>
+            </xar:foreach>
+          </ul>
+        </div>
+    </xar:if>
+</xar:template>
