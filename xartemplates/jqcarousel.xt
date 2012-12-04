@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <!--
+        Based on http://www.bkosborne.com/jquery-feature-carousel
+    -->
+    <xar:style scope="block" block="jqcarousel" file="feature-carousel" method="link" position="head"/>
+    <xar:javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" position="head"/>
+    <xar:javascript scope="block" block="jqcarousel" filename="jquery.featureCarousel.min.js" position="head"/>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var carousel = $("##carousel").featureCarousel({
+          // include options like this:
+          // (use quotes only for string values, and no trailing comma after last option)
+          // option: value,
+          // option: value
+        });
+
+        $("##but_prev").click(function () {
+          carousel.prev();
+        });
+        $("##but_pause").click(function () {
+          carousel.pause();
+        });
+        $("##but_start").click(function () {
+          carousel.start();
+        });
+        $("##but_next").click(function () {
+          carousel.next();
+        });
+      });
+    </script>
+
+    <xar:if condition="!empty($items)">
+      <div class="carousel-container">
+        <div id="carousel-left"><img src="#xarTpl::getImage('arrow-left.png', 'block', 'jqcarousel')#" /></div>
+        <div id="carousel-right"><img src="#xarTpl::getImage('arrow-right.png', 'block', 'jqcarousel')#" /></div>
+        <div id="carousel">
+            <xar:foreach in="$items" key="$key" value="$item">
+                <div class="carousel-feature">
+                  <a href="##">
+                    <img class="carousel-image" alt="Image Caption" src="#$item['image']#"/>
+                  </a>
+                  <div class="carousel-caption">
+                    <p>
+                      This area is typically used to display captions associated with the images. They are set to hide and fade in on rotation.
+                    </p>
+                  </div>
+                </div>
+            </xar:foreach>
+        </div>
+      </div>
+    </xar:if>
+</xar:template>

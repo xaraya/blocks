@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <div class="xar-row">
+        <div class="xar-col">
+            <label class="help" title="#xarML('The directory where the images to be displayed are located')#" for="imagedir#$blockid#"> 
+                Image directory 
+            </label>
+        </div>
+        <div class="xar-col">
+            <xar:data-input type="textbox" name="imagedir" value="$imagedir"/>
+        </div>
+    </div>
+    <div class="xar-row">
+        <div class="xar-col">
+            <label class="help" title="#xarML('The speed with which the images rotate')#" for="speed#$blockid#"> 
+                Speed 
+            </label>
+        </div>
+        <div class="xar-col">
+            <xar:set name="options">
+                array(
+                    array('id' => 'slow', 'name' => xarML('Slow')),
+                    array('id' => 'fast', 'name' => xarML('Fast')),
+                )
+            </xar:set>        
+            <xar:data-input type="dropdown" name="speed" options="$options" value="$speed"/>
+        </div>
+    </div>
+    <div class="xar-row">
+        <div class="xar-col">
+            <label class="help" title="#xarML('Whether to display captions for the images')#" for="imagedir#$blockid#"> 
+                Use captions 
+            </label>
+        </div>
+        <div class="xar-col">
+            <xar:data-input type="checkbox" name="usecaptions" value="$usecaptions"/>
+        </div>
+    </div>
+</xar:template>
