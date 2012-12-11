@@ -9,12 +9,6 @@
         <xar:set name="options">xarModAPIFunc('publications', 'user', 'get_pubtypes')</xar:set>        
         <xar:data-input type="dropdown" name="pubtype_id" firstline="$firstline" options="$options" value="$pubtype_id"/>
     </div>
-    <div class="xar-form-input-wrapper-after">
-        <xar:data-input type="checkbox" name="linkpubtype" checked="$linkpubtype"/>
-        <label class="help" title="#xarML('Check this if you want to include the publication type in the article links.')#" for="linkpubtype#$blockid#"> 
-            Link to Publication Type 
-        </label> 
-    </div>
     <xar:if condition="empty($nocatlimit)">
         <div class="xar-form-input-wrapper">
             <label class="xar-form-label help" title="#xarML('Choose the category for the featured items.')#" for="catfilter#$blockid#"> 
@@ -147,9 +141,9 @@
     </div>
     <div class="xar-form-input-wrapper-after">
         <xar:data-input type="checkbox" name="linkpubtype" checked="$linkpubtype"/>
-        <label class="help" title="#xarML('Set to include the publication type in the article link.')#" for="linkpubtype#$blockid#">
-            Link to publication type            
-        </label>
+        <label class="help" title="#xarML('Check this if you want to include the publication type in the article links.')#" for="linkpubtype#$blockid#"> 
+            Link to Publication Type 
+        </label> 
     </div>
     <xar:if condition="isset($catfilter)">
         <div class="xar-form-input-wrapper-after">
