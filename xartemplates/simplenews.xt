@@ -12,13 +12,23 @@
               <xar:if condition="!empty($items)">
                 <xar:foreach in="$items" key="$key" value="$item">
                     <li class="news-item">
-                        <xar:template scope="block" block="simplenews" file="newsitem" subdata="array('item' => $item)"/>
+                        <xar:if condition="$item['itemtype'] eq 1">
+                            <xar:if condition="$showsummary AND !empty($item['description'])">
+                                <!-- Title and Summary -->
+                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#xarVarPrepForDisplay($item['title'])#</b> - #xarVarPrepForDisplay($item['description'])#</a>
+                            <xar:else/>
+                                <!-- Title -->
+                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
+                            </xar:if>
+                        <xar:else/>
+                            No news available
+                        </xar:if>
                     </li>
                 </xar:foreach>
               <xar:else/>
-                    <li class="news-item">
-                        No news available
-                    </li>
+                <li class="news-item">
+                    No news available
+                </li>
               </xar:if>
           </ul>
         </div>
