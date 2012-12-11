@@ -3,7 +3,7 @@
     <xar:if condition="$item['itemtype'] eq 1">
         <xar:if condition="$showsummary">
             <!-- Title and Summary -->
-            <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#xarVarPrepForDisplay($item['title'])#</b> - #xarVarPrepForDisplay($item['summary'])#</a>
+            <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#xarVarPrepForDisplay($item['title'])#</b> - #xarVarPrepForDisplay($item['description'])#</a>
         <xar:else/>
             <!-- Title -->
             <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
