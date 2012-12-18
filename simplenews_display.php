@@ -30,7 +30,7 @@ class SimplenewsBlockDisplay extends SimplenewsBlock implements iBlock
             $publications->dataquery->in('id',$featuredids);
             
             // Do we need to filter on locale?
-            if ($this->locale == 2) $publications->dataquery->eq('localr',xarUserGetNavigationLocale());
+            if ($this->locale == 2) $publications->dataquery->eq('locale',xarUserGetNavigationLocale());
             
             $items = $publications->getItems();
             if (empty($items)) return '';
