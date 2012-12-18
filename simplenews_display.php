@@ -28,6 +28,10 @@ class SimplenewsBlockDisplay extends SimplenewsBlock implements iBlock
         if (count($featuredids) > 0) {        
             $publications = DataObjectMaster::getObjectList(array('name' => 'publications_publications'));  
             $publications->dataquery->in('id',$featuredids);
+            
+            // Do we need to filter on locale?
+            if ($this->locale == 2) $publications->dataquery->eq('localr',xarUserGetNavigationLocale());
+            
             $items = $publications->getItems();
             if (empty($items)) return '';
             $data['publications'] = $publications;
