@@ -187,8 +187,22 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
 
     private function getItems(Array $data=array())
     {
-        $items = xarModAPIFunc('publications', 'user', 'getall', $data );
-        return $items;
+        // Simplified getall
+        sys::import('xaraya.structures.query');
+        xarMod::apiLoad('publications');
+        $q = new query('SELECT', $table('publications'));
+        $q->addfield('id');
+        $q->addfield('name');
+        if ($this->locale == 2) $q->eq('locale',xarUserGetNavigationLocale());
+        if (is_array($this->pubstate)) {
+            $c = array();
+            foreach($this->pubstate as $state) $c[] = $q->peq('state', $state);
+            if (!empty($c)) $q->qor($c);
+        } else {
+            $q->eq('locale',$this->pubstate);
+        }
+        if (!$q->run()) return array();
+        return $q->output();
     }
 }
 ?>
