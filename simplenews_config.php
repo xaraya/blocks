@@ -190,7 +190,8 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
         // Simplified getall
         sys::import('xaraya.structures.query');
         xarMod::apiLoad('publications');
-        $q = new query('SELECT', $table('publications'));
+        $tables = xarDB::getTables();
+        $q = new query('SELECT', $tables['publications']);
         $q->addfield('id');
         $q->addfield('name');
 //        if ($this->locale == 2) $q->eq('locale',xarUserGetNavigationLocale());
