@@ -42,16 +42,28 @@
     </div>
     <div class="xar-form-input-wrapper">
         <label class="xar-form-label help" title="#xarML('Choose the state (e.g. Approved, Front Page) for the featured items.')#" for="state#$blockid#"> 
-            Status             
+            State             
         </label>
         <xar:set name="options">
             array(
                 array('id' => '3,4', 'name' => xarML('All Published')),
-                array('id' => '4', 'name' => xarML('Frontpage')),
-                array('id' => '3', 'name' => xarML('Approved'))
+                array('id' => '4',   'name' => xarML('Frontpage')),
+                array('id' => '3',   'name' => xarML('Approved'))
             )
         </xar:set>        
         <xar:data-input type="dropdown" name="pubstate" options="$options" value="$pubstate"/>
+    </div>
+    <div class="xar-form-input-wrapper">
+        <label class="xar-form-label help" title="#xarML('Choose the language/locale for the featured items.')#" for="state#$blockid#"> 
+            Language/Locale             
+        </label>
+        <xar:set name="options">
+            array(
+                array('id' => '1', 'name' => xarML('All Languages')),
+                array('id' => '2', 'name' => xarML('Current Language')),
+            )
+        </xar:set>        
+        <xar:data-input type="dropdown" name="locale" options="$options" value="$locale"/>
     </div>
 
     <div class="xar-form-input-wrapper">

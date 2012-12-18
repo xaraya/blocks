@@ -26,6 +26,7 @@ class SimplenewsBlock extends BasicBlock implements iBlock
 
     public $numitems            = 5;
     public $pubtype_id          = 0;
+    public $locale              = 1;
     public $linkpubtype         = true;
     public $itemlimit           = 0;
     public $featuredids         = array();

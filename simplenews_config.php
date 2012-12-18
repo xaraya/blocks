@@ -128,11 +128,6 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
 
         $data['pubtypes'] = xarModAPIFunc('publications', 'user', 'get_pubtypes');
         $data['categorylist'] = xarModAPIFunc('categories', 'user', 'getcat');
-        $data['stateoptions'] = array(
-            array('id' => '', 'name' => xarML('All Published')),
-            array('id' => '3', 'name' => xarML('Frontpage')),
-            array('id' => '2', 'name' => xarML('Approved'))
-        );
 
         $data['sortoptions'] = array(
             array('id' => 'author', 'name' => xarML('Author')),
