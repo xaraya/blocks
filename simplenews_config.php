@@ -193,7 +193,7 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
         $q = new query('SELECT', $table('publications'));
         $q->addfield('id');
         $q->addfield('name');
-        if ($this->locale == 2) $q->eq('locale',xarUserGetNavigationLocale());
+//        if ($this->locale == 2) $q->eq('locale',xarUserGetNavigationLocale());
         if (is_array($this->pubstate)) {
             $c = array();
             foreach($this->pubstate as $state) $c[] = $q->peq('state', $state);

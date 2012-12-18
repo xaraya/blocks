@@ -13,6 +13,9 @@
                 <xar:foreach in="$items" key="$key" value="$item">
                     <li class="news-item">
                         <xar:if condition="$item['itemtype'] eq 1">
+                            <xar:if condition="($locale eq 2) AND ($item['locale'] ne xarUserGetNavigationLocale())">
+                                <xar:continue/>
+                            </xar:if>
                             <xar:if condition="$showsummary AND !empty($item['description'])">
                                 <!-- Title and Summary -->
                                 <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#$item['title']#</b> - #$item['description']#</a>
