@@ -15,10 +15,10 @@
                         <xar:if condition="$item['itemtype'] eq 1">
                             <xar:if condition="$showsummary AND !empty($item['description'])">
                                 <!-- Title and Summary -->
-                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#xarVarPrepForDisplay($item['title'])#</b> - #xarVarPrepForDisplay($item['description'])#</a>
+                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#"><b>#$item['title']#</b> - #$item['description']#</a>
                             <xar:else/>
                                 <!-- Title -->
-                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#">#xarVarPrepForDisplay($item['title'])#</a>
+                                <a href="#xarModURL('publications','user','display',array('itemid'=>$item['id']))#">#$item['title']#</a>
                             </xar:if>
                         <xar:else/>
                             No news available
