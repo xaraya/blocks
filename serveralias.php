@@ -23,7 +23,7 @@ class ServerAliasBlock extends BasicBlock
     protected $usershared          = true;
     protected $pageshared          = false;
     
-    public $redirects              = false;
+    public $redirects              = array();
     public $send_info              = false;
     
 /**
