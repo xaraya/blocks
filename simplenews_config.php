@@ -110,10 +110,72 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
         $article_args['enddate'] = time();
         $article_args['state'] = $statearray;
         $article_args['fields'] = $data['fields'];
-        $article_args['sort'] = $this->toptype;
+        $article_args['sort'] = 'name';
 
         $data['filtereditems'] = $this->getItems($article_args);
-            
+
+        //new filter array to get the publications with parent_id = 0
+        $data['newfiltereditems'] = array();
+        foreach ($data['filtereditems'] as $key => $filtereditem) {
+            if ($filtereditem['parent_id'] == 0) {
+                $data['newfiltereditems'][] = array('id' => $filtereditem['id'],
+                                         'name' => $filtereditem['name'],
+                                         'title' => $filtereditem['title'],
+                                         'parent_id' => $filtereditem['parent_id']);
+            }
+        }
+
+        // create grouping of array with base and translations items.
+        //add the entries with parent_id != 0 behind each parent entry
+        sys::import('xaraya.structures.query');
+        $tables =& xarDB::getTables();
+        $items1 = array();
+        foreach ($data['newfiltereditems'] as $k => $value) {
+            //array for item which have parent_id=0
+            $value1[] = $value;
+
+            $q = new Query('SELECT', $tables['publications']);
+            $q->addfield('id');
+            $q->addfield('name');
+            $q->addfield('title');
+            $q->addfield('parent_id');
+            $q->eq('parent_id',$value['id']);
+            $q->eq('state',3);
+            $q->eq('pubtype_id',$article_args['ptid']);
+            $q->run();
+
+            //getting items for each parent id
+            $items = $q->output();
+            if(!empty($items)) {
+                foreach ($items as $item) {
+                    //items1 array to display the translation in multiselect box with leading hypens ( - - translation1)
+                    $items1[] = array('id' => $item['id'],
+                             'name' => ' - - '.$item['name'],
+                             'title' => $item['title'],
+                             'parent_id' => $item['parent_id']);
+                }
+                //creating new array with parent and translations
+                $newitems[] = array_merge($value1, $items1);
+                unset($value1);
+                unset($items1);
+            } else {
+                //if items with parent_is=0 not having translations
+                if (!in_array($value1, $newitems)) {
+                    $newitems[] = $value1;
+                }
+                unset($value1);
+            }
+        }
+        // formatting final array for display purpose.
+        foreach ($newitems as $k1 => $val) {
+            foreach ($val as $k2 => $v) {
+                $a[] = array('id' => $v['id'],
+                             'name' => $v['name'],
+                             'title' => $v['title'],
+                             'parent_id' => $v['parent_id']);
+            }
+        }
+        $data['filtereditems_new'] = $a;
 
 // Check for exceptions
 //    if (!isset($vars['filtereditems']) && xarCurrentErrorType() != XAR_NO_EXCEPTION)
@@ -134,6 +196,7 @@ class SimplenewsBlockConfig extends SimplenewsBlock implements iBlock
             array('id' => 'date', 'name' => xarML('Date')),
             array('id' => 'hits', 'name' => xarML('Hit Count')),
             array('id' => 'rating', 'name' => xarML('Rating')),
+            array('id' => 'name', 'name' => xarML('Name')),
             array('id' => 'title', 'name' => xarML('Title'))
         );
     

@@ -78,8 +78,9 @@
         </label>
         <xar:var name="firstline">--- No publications chosen ---</xar:var>
         <xar:set name="firstline">array('id' => 0, 'name' => $firstline)</xar:set>
-        <xar:data-input type="multiselect" size="10" name="featuredids" firstline="$firstline" options="$filtereditems" value="$featuredids"/>
+        <xar:data-input type="multiselect" size="10" name="featuredids" firstline="$firstline" options="$filtereditems_new" value="$featuredids"/>
     </div>
+
     <!--
     
     <div class="xar-form-input-wrapper">
@@ -133,6 +134,7 @@
                 array('id' => 'date', 'name' => xarML('Date')),
                 array('id' => 'hits', 'name' => xarML('Hit Count')),
                 array('id' => 'rating', 'name' => xarML('Rating')),
+                array('id' => 'name', 'name' => xarML('Name')),
                 array('id' => 'title', 'name' => xarML('Title'))
             )
         </xar:set>        
