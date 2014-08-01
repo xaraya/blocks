@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <!-- loop through the links for the current level -->
+    <xar:foreach in="$links" key="$linkid" value="$link">
+        <xar:if condition="empty($link['title'])">
+            <xar:set name="title">''</xar:set>
+        <xar:else/>
+            <xar:set name="title">$link['title']</xar:set>
+        </xar:if>
+        <li>
+            <!-- Display the link -->
+            <xar:if condition="!empty($link['link']) and !empty($link['label'])">
+                <a href="#$link['link']#" id="#$linkid#" title="#$title#">
+                    #$link['label']#
+                </a>
+            <xar:elseif condition="!empty($link['label'])"/>
+                #$link['label']#
+            <xar:else/>
+                #$linkid#
+            </xar:if>
+            <!-- If this link has links, display next level -->
+            <xar:if condition="!empty($link['links'])">
+                <!-- Put all the data this template expects in the subdata array -->
+                <xar:set name="subdata">array(
+                    'links' => $link['links'],  // next level of menu links
+                    )
+                </xar:set>
+                <!-- pass the subdata to this template, and do the dance again :) -->
+                <ul>
+                    <xar:template type="block" block="superfish" file="menulinks" subdata="$subdata"/>
+                </ul>
+            </xar:if>
+        </li>
+    </xar:foreach>
+</xar:template>

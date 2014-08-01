@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xar:template xmlns:xar="http://xaraya.com/2004/blocklayout">
+    <xar:style scope="block" block="superfish" file="superfish" method="link" position="head"/>
+    
+    <!-- User for more complex menus
+    <xar:style scope="block" block="superfish" file="superfish-navbar" method="link" position="head"/>
+    <xar:style scope="block" block="superfish" file="superfish-vertical" method="link" position="head"/>
+    <xar:style scope="block" block="superfish" file="megafish" method="link" position="head"/>
+    -->
+    
+    <xar:javascript type="lib" lib="jquery"/>
+    <xar:javascript scope="block" block="superfish" filename="hoverintent.js" position="head"/>
+    <xar:javascript scope="block" block="superfish" filename="superfish.min.js" position="head"/>
+    
+    <!-- User for more complex menus
+    <xar:javascript scope="block" block="superfish" filename="supersubs.js" position="head"/>
+    -->
+    
+    <!-- Used for more complex menus
+    <script>
+
+    (function($){ //create closure so we can safely use $ as alias for jQuery
+
+        $(document).ready(function(){
+
+            // initialise plugin
+            var example = $('#example').superfish({
+                //add options here if required
+            });
+
+            // buttons to demonstrate Superfish's public methods
+            $('.destroy').on('click', function(){
+                example.superfish('destroy');
+            });
+
+            $('.init').on('click', function(){
+                example.superfish();
+            });
+
+            $('.open').on('click', function(){
+                example.children('li:first').superfish('show');
+            });
+
+            $('.close').on('click', function(){
+                example.children('li:first').superfish('hide');
+            });
+        });
+
+    })(jQuery);
+
+
+    </script>
+
+    <button class="open">Open first submenu</button>
+    <button class="close">Close first submenu</button>
+    <button class="destroy">Destroy Superfish</button>
+    <button class="init">Restore Superfish</button>
+    -->
+
+    <xar:if condition="!empty($links)">
+        <!-- Links are passed -->
+		<ul class="sf-menu" id="example">
+            <!-- Hand the links off to the common menulinks include template.
+                 The template recursively includes itself to add sublinks to any number
+                 of nested levels, and also ensures menus are consistent.
+                 You can of course over-ride this block template, or the include itself
+                 to provide unique styling for individual menus
+            -->
+            <!-- We assume we have an array  -->
+            <xar:set name="subdata">array(
+                'links' => $links,      // pass the menulinks
+            )</xar:set>
+            <xar:template type="block" block="superfish" file="menulinks" subdata="$subdata"/>
+        </ul>
+    <xar:else/>
+        <!-- Standard Example -->
+		<ul class="sf-menu" id="example">
+			<li class="current">
+				<a href="#">menu item 1</a>
+				<ul>
+					<li>
+						<a href="#">menu item</a>
+					</li>
+					<li class="current">
+						<a href="#">long menu item sets sub width</a>
+						<ul>
+							<li class="current"><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">menu item 2</a>
+			</li>
+			<li>
+				<a href="#">menu item 3</a>
+				<ul>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">short</a></li>
+							<li><a href="#">short</a></li>
+							<li><a href="#">short</a></li>
+							<li><a href="#">short</a></li>
+							<li><a href="#">short</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">menu item</a>
+						<ul>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+							<li><a href="#">menu item</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">menu item 4</a>
+			</li>	
+		</ul>
+    </xar:if>
+</xar:template>
