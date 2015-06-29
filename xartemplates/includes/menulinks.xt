@@ -15,7 +15,6 @@
                 </a>
             <xar:elseif condition="!empty($link['label'])"/>
                 #$link['label']#
-                <xar:img scope="theme" theme="grader" file="glyphicons/glyphicons-602-chevron-down.png" width="10px"/>
             <xar:else/>
                 #$linkid#
             </xar:if>
