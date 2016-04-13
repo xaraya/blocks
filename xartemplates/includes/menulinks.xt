@@ -7,10 +7,13 @@
         <xar:else/>
             <xar:set name="title">$link['title']</xar:set>
         </xar:if>
+        <xar:if condition="empty($link['target'])">
+            <xar:set name="target">'_self'</xar:set>
+        </xar:if>
         <li>
             <!-- Display the link -->
             <xar:if condition="!empty($link['link']) and !empty($link['label'])">
-                <a href="#$link['link']#" id="#$linkid#" title="#$title#">
+                <a href="#$link['link']#" id="#$linkid#" title="#$title#" target="#$target#">
                     #$link['label']#
                 </a>
             <xar:elseif condition="!empty($link['label'])"/>
