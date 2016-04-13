@@ -9,6 +9,8 @@
         </xar:if>
         <xar:if condition="empty($link['target'])">
             <xar:set name="target">'_self'</xar:set>
+        <xar:else/>
+            <xar:set name="target">$link['target']</xar:set>
         </xar:if>
         <li>
             <!-- Display the link -->
